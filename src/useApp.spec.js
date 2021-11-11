@@ -2,7 +2,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 /* hooks */
 import { useApp } from "./useApp";
 /* data */
-import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./data/initTodo";
+import { INIT_TODO_LIST } from "./data/initTodo";
 
 describe("【Hooksテスト】useApp test", () => {
   describe("【関数テスト】onChangeTodo", () => {
@@ -109,8 +109,22 @@ describe("【Hooksテスト】useApp test", () => {
       expect(result.current[0].todoList).not.toEqual(expectTodoList);
     });
   });
+
   describe("【関数テスト】handleDeleteTodo", () => {
-    test("【正常系】todoが削除されること", () => {});
-    test("【異常系】元のtodoListが空の場合、処理が発生しないこと", () => {});
+    let expectTodoList = [];
+    beforeEach(() => {
+      expectTodoList = [];
+    });
+    test("【正常系】todoが削除されること", () => {
+      // 引数
+      const targetId = 1;
+      // 予測値
+      expectTodoList = INIT_TODO_LIST.filter((todo) => todo.id !== targetId);
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      act(() => result.current[1].handleDeleteTodo(targetId));
+      // 指定したIDのTodoが削除されていること
+      expect(result.current[0].todoList).toEqual(expectTodoList);
+    });
   });
 });
