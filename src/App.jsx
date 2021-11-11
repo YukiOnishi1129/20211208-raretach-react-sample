@@ -31,6 +31,7 @@ function App() {
       const nextUniqueId = uniqueId + 1;
       // Todo追加処理
       setTodoList(
+        // TODO: concatとpushの違い
         todoList.concat({
           id: nextUniqueId,
           title: addInputValue,
