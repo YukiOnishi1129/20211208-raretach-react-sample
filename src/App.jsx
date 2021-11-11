@@ -1,6 +1,6 @@
 import React from "react";
 /* components */
-import { TodoList } from "./components/TodoList";
+// import { TodoList } from "./components/TodoList";
 /* data */
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./data/initTodo";
 /* styles */
@@ -16,7 +16,6 @@ function App() {
   const [uniqueId, setUniqueId] = React.useState(INIT_UNIQUE_ID);
 
   /* actions */
-
   /**
    * addInputValueの変更処理
    * @param {*} e
@@ -25,6 +24,10 @@ function App() {
     setAddInputValue(e.target.value);
   };
 
+  /**
+   * Todo新規登録処理
+   * @param {*} e
+   */
   const handleAddTodo = (e) => {
     //  エンターキーが押された時にTodoを追加する
     if (e.keyCode === 13 && e.target.value !== "") {
@@ -44,6 +47,17 @@ function App() {
     }
   };
 
+  /**
+   * Todo削除処理
+   * @param {*} targetId
+   */
+  const handleDeleteTodo = (targetId) => {
+    // 削除するid以外のtodoリストを再編集
+    const newTodoList = todoList.filter((todo) => todo.id !== targetId);
+    // todoを削除したtodo listで更新
+    setTodoList(newTodoList);
+  };
+
   return (
     <div className="App">
       <h1 className="title">Todo List</h1>
@@ -60,16 +74,21 @@ function App() {
       </section>
       {/* Todoリスト一覧表示 */}
       {/* <TodoList todoList={todoList} /> */}
-      <section className="common-area">
-        <ul className="todolist">
-          {todoList.map((todo) => (
-            <li key={todo.id} className="todo">
-              <span className="todo-task">{todo.title}</span>
-              <i className="far fa-trash-alt delete fa-lg"></i>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {todoList.length > 0 && (
+        <section className="common-area">
+          <ul className="todolist">
+            {todoList.map((todo) => (
+              <li key={todo.id} className="todo">
+                <span className="todo-task">{todo.title}</span>
+                <i
+                  className="far fa-trash-alt delete fa-lg"
+                  onClick={() => handleDeleteTodo(todo.id)}
+                ></i>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
