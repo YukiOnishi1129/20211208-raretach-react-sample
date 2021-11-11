@@ -5,15 +5,19 @@ function App() {
     <div className="App">
       <h1 className="title">Todo List</h1>
       {/* Todo追加エリア */}
-      <section>
-        <h2>ADD TODO</h2>
+      <section className="common-area">
+        <h2 className="add-title">ADD TODO</h2>
         <input type="text" placeholder="New Todo" />
       </section>
       {/* Todoリスト一覧表示 */}
-      <section>
-        <ul>
-          <li>
-            <span>Todo1</span>
+      <section className="common-area">
+        <ul className="todolist">
+          <li className="todo">
+            <span className="todo-task">Todo1</span>
+            <i className="far fa-trash-alt delete fa-lg"></i>
+          </li>
+          <li className="todo">
+            <span className="todo-task">Todo2</span>
             <i className="far fa-trash-alt delete fa-lg"></i>
           </li>
         </ul>
