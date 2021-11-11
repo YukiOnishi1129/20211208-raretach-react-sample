@@ -1,4 +1,4 @@
-export const initTodoList = [
+export const INIT_TODO_LIST = [
   {
     id: 1,
     title: "Todo1",
@@ -8,3 +8,5 @@ export const initTodoList = [
     title: "Todo2",
   },
 ];
+
+export const INIT_UNIQUE_ID = 2;
