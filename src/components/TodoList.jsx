@@ -9,7 +9,7 @@ import "../App.css";
  */
 export const TodoList = (props) => {
   /* props */
-  const { todoList } = props;
+  const { todoList, handleDeleteTodo } = props;
 
   return (
     <section className="common-area">
@@ -17,7 +17,10 @@ export const TodoList = (props) => {
         {todoList.map((todo) => (
           <li key={todo.id} className="todo">
             <span className="todo-task">{todo.title}</span>
-            <i className="far fa-trash-alt delete fa-lg"></i>
+            <i
+              className="far fa-trash-alt delete fa-lg"
+              onClick={() => handleDeleteTodo(todo.id)}
+            ></i>
           </li>
         ))}
       </ul>
