@@ -1,3 +1,8 @@
+/**
+ * useApp.spec
+ *
+ * @package hooks
+ */
 import { renderHook, act } from "@testing-library/react-hooks";
 /* hooks */
 import { useApp } from "./useApp";

@@ -1,3 +1,8 @@
+/**
+ * useApp
+ *
+ * @package hooks
+ */
 import React from "react";
 /* data */
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./data/initTodo";
