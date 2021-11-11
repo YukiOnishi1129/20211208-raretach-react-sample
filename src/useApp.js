@@ -30,7 +30,7 @@ export const useApp = () => {
    */
   const handleAddTodo = (e) => {
     //  エンターキーが押された時にTodoを追加する
-    if (e.keyCode === 13 && e.target.value !== "") {
+    if (e.keyCode === 13 && addInputValue !== "") {
       const nextUniqueId = uniqueId + 1;
       // Todo追加処理
       setTodoList(
