@@ -1,3 +1,6 @@
+/* data */
+import { initTodoList } from "./data/initTodo";
+/* styles */
 import "./App.css";
 
 function App() {
@@ -12,14 +15,12 @@ function App() {
       {/* Todoリスト一覧表示 */}
       <section className="common-area">
         <ul className="todolist">
-          <li className="todo">
-            <span className="todo-task">Todo1</span>
-            <i className="far fa-trash-alt delete fa-lg"></i>
-          </li>
-          <li className="todo">
-            <span className="todo-task">Todo2</span>
-            <i className="far fa-trash-alt delete fa-lg"></i>
-          </li>
+          {initTodoList.map((todo) => (
+            <li key={todo.id} className="todo">
+              <span className="todo-task">{todo.title}</span>
+              <i className="far fa-trash-alt delete fa-lg"></i>
+            </li>
+          ))}
         </ul>
       </section>
     </div>
