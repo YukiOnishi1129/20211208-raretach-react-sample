@@ -1,3 +1,8 @@
+/**
+ * useApp
+ *
+ * @package hooks
+ */
 import React from "react";
 /* data */
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./data/initTodo";
@@ -30,7 +35,7 @@ export const useApp = () => {
    */
   const handleAddTodo = (e) => {
     //  エンターキーが押された時にTodoを追加する
-    if (e.keyCode === 13 && e.target.value !== "") {
+    if (e.keyCode === 13 && addInputValue !== "") {
       const nextUniqueId = uniqueId + 1;
       // Todo追加処理
       setTodoList(
