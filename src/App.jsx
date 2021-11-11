@@ -1,3 +1,6 @@
+/**
+ * App
+ */
 import React from "react";
 /* components */
 import { AddTodo } from "./components/AddTodo";
@@ -7,7 +10,7 @@ import { useApp } from "./useApp";
 /* styles */
 import "./App.css";
 
-function App() {
+const App = () => {
   /* hooks */
   const [state, actions] = useApp();
 
@@ -29,6 +32,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
 export default App;

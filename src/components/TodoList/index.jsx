@@ -1,6 +1,11 @@
+/**
+ * TodoList
+ *
+ * @package components
+ */
 import React from "react";
 /* styles */
-import "../App.css";
+import "./style.css";
 
 /**
  * TodoList
