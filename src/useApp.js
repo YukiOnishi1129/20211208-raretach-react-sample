@@ -52,6 +52,7 @@ export const useApp = () => {
    * @param {*} targetId
    */
   const handleDeleteTodo = (targetId) => {
+    if (todoList.length === 0) return;
     // 削除するid以外のtodoリストを再編集
     const newTodoList = todoList.filter((todo) => todo.id !== targetId);
     // todoを削除したtodo listで更新
