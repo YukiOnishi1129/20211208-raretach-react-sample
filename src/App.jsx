@@ -1,6 +1,6 @@
 import React from "react";
 /* components */
-// import { TodoList } from "./components/TodoList";
+import { TodoList } from "./components/TodoList";
 /* data */
 import { INIT_TODO_LIST, INIT_UNIQUE_ID } from "./data/initTodo";
 /* styles */
@@ -73,21 +73,8 @@ function App() {
         />
       </section>
       {/* Todoリスト一覧表示 */}
-      {/* <TodoList todoList={todoList} /> */}
       {todoList.length > 0 && (
-        <section className="common-area">
-          <ul className="todolist">
-            {todoList.map((todo) => (
-              <li key={todo.id} className="todo">
-                <span className="todo-task">{todo.title}</span>
-                <i
-                  className="far fa-trash-alt delete fa-lg"
-                  onClick={() => handleDeleteTodo(todo.id)}
-                ></i>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <TodoList todoList={todoList} handleDeleteTodo={handleDeleteTodo} />
       )}
     </div>
   );
