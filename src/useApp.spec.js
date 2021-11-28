@@ -34,7 +34,7 @@ describe("【Hooksテスト】useApp test", () => {
       target: {
         value: "テスト",
       },
-      keyCode: 13,
+      key: "Enter",
     };
     beforeEach(() => {
       // 引数の初期化
@@ -42,7 +42,7 @@ describe("【Hooksテスト】useApp test", () => {
         target: {
           value: "テスト",
         },
-        keyCode: 13,
+        key: "Enter",
       };
     });
     test("【正常系】todoList, uniqueIdが更新されること、addInputValueがリセットされること", () => {
@@ -78,7 +78,7 @@ describe("【Hooksテスト】useApp test", () => {
       });
       // 引数
       eventObject.target.value = expectTodoTitle;
-      eventObject.keyCode = 1;
+      eventObject.key = "";
       // hooks呼び出し
       const { result } = renderHook(() => useApp());
       expect(result.current[0].addInputValue).toBe("");
