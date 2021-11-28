@@ -38,13 +38,27 @@ export const useApp = () => {
     if (e.key === "Enter" && addInputValue !== "") {
       const nextUniqueId = uniqueId + 1;
       // Todo追加処理
-      setTodoList(
-        // TODO: concatとpushの違い
-        todoList.concat({
+      // 元の配列を破壊しないように配列のコピーを作成して、その値でstateを更新する
+      // pushでの配列追加は元の配列の値を変更するのでエラーになる
+
+      // concatの処理
+      // setTodoList(
+      //   // concatとpushの違い
+      //   // https://kskpblog.com/javascript-array-add/
+      //   todoList.concat({
+      //     id: nextUniqueId,
+      //     title: addInputValue,
+      //   })
+      // );
+
+      // スプレッド構文の処理
+      setTodoList([
+        ...todoList,
+        {
           id: nextUniqueId,
           title: addInputValue,
-        })
-      );
+        },
+      ]);
       // 採番IDを更新
       setUniqueId(nextUniqueId);
       // todo追加後、入力値をリセット
