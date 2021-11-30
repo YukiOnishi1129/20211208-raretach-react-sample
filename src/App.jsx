@@ -6,7 +6,7 @@ import React from "react";
 import { AddTodo } from "./components/AddTodo";
 import { TodoList } from "./components/TodoList";
 /* hooks */
-import { useApp } from "./useApp";
+import { useApp } from "./hooks/useApp";
 /* styles */
 import "./App.css";
 
