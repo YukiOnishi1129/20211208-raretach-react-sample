@@ -24,7 +24,7 @@ export const TodoList = (props) => {
             <span className="todo-task">{todo.title}</span>
             <i
               className="far fa-trash-alt delete fa-lg"
-              onClick={() => handleDeleteTodo(todo.id)}
+              onClick={() => handleDeleteTodo(todo.id, todo.title)}
             ></i>
           </li>
         ))}

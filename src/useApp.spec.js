@@ -123,12 +123,35 @@ describe("【Hooksテスト】useApp test", () => {
     test("【正常系】todoが削除されること", () => {
       // 引数
       const targetId = 1;
+      const targetTitle = "テスト";
+      // window.confirmをモック化
+      // confirmでOKをクリックした場合
+      // https://stackoverflow.com/questions/41732903/stubbing-window-functions-in-jest
+      // window.confirm = jest.fn().mockImplementation(() => true);
+      window.confirm = jest.fn().mockReturnValueOnce(true);
       // 予測値
       expectTodoList = INIT_TODO_LIST.filter((todo) => todo.id !== targetId);
       // hooks呼び出し
       const { result } = renderHook(() => useApp());
-      act(() => result.current[1].handleDeleteTodo(targetId));
+      act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
       // 指定したIDのTodoが削除されていること
+      expect(result.current[0].todoList).toEqual(expectTodoList);
+    });
+
+    test("【正常系】confirmでキャンセルをクリックした場合、todoが削除されること", () => {
+      // 引数
+      const targetId = 1;
+      const targetTitle = "テスト";
+      // window.confirmをモック化
+      // confirmでキャンセルをクリックした場合
+      window.confirm = jest.fn().mockReturnValueOnce(false);
+      // 予測値
+      expectTodoList = INIT_TODO_LIST;
+      // expectTodoList = INIT_TODO_LIST.filter((todo) => todo.id !== targetId);
+      // hooks呼び出し
+      const { result } = renderHook(() => useApp());
+      act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));
+      // Todoの削除処理が実行されないこと
       expect(result.current[0].todoList).toEqual(expectTodoList);
     });
   });
