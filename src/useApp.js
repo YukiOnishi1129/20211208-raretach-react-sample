@@ -72,7 +72,14 @@ export const useApp = () => {
    */
   const handleDeleteTodo = (targetId) => {
     // 削除するid以外のtodoリストを再編集
+    // filterを用いた方法
     const newTodoList = todoList.filter((todo) => todo.id !== targetId);
+
+    // 削除するTodoの配列番号を取り出してspliceで削除する方法もある
+    // const newTodoList = [...todoList];
+    // const deleteIndex = newTodoList.findIndex((todo) => todo.id === targetId);
+    // newTodoList.splice(deleteIndex, 1);
+
     // todoを削除したtodo listで更新
     setTodoList(newTodoList);
   };
