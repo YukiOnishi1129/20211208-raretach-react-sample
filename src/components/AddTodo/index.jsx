@@ -17,7 +17,7 @@ export const AddTodo = (props) => {
   const { addInputValue, onChangeTodo, handleAddTodo } = props;
 
   return (
-    <section className="common-area">
+    <>
       <h2 className="add-title">ADD TODO</h2>
       <input
         type="text"
@@ -26,6 +26,6 @@ export const AddTodo = (props) => {
         onChange={onChangeTodo}
         onKeyDown={handleAddTodo}
       />
-    </section>
+    </>
   );
 };

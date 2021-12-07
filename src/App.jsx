@@ -10,7 +10,7 @@ import { useApp } from "./hooks/useApp";
 /* styles */
 import "./App.css";
 
-const App = () => {
+export const App = () => {
   /* hooks */
   const [state, actions] = useApp();
 
@@ -18,20 +18,22 @@ const App = () => {
     <div className="App">
       <h1 className="title">Todo List</h1>
       {/* Todo追加エリア */}
-      <AddTodo
-        addInputValue={state.addInputValue}
-        onChangeTodo={actions.onChangeTodo}
-        handleAddTodo={actions.handleAddTodo}
-      />
-      {/* Todoリスト一覧表示 */}
-      {state.todoList.length > 0 && (
-        <TodoList
-          todoList={state.todoList}
-          handleDeleteTodo={actions.handleDeleteTodo}
+      <section className="common-area">
+        <AddTodo
+          addInputValue={state.addInputValue}
+          onChangeTodo={actions.onChangeTodo}
+          handleAddTodo={actions.handleAddTodo}
         />
-      )}
+      </section>
+      {/* Todoリスト一覧表示 */}
+      <section className="common-area">
+        {state.todoList.length > 0 && (
+          <TodoList
+            todoList={state.todoList}
+            handleDeleteTodo={actions.handleDeleteTodo}
+          />
+        )}
+      </section>
     </div>
   );
 };
-
-export default App;
