@@ -49,3 +49,15 @@ localhost:3000
 ````
 yarn test
 ````
+
+以下の内容がターミナルに表示されるので、「a」をクリックするとテストが実行される
+
+````
+Watch Usage
+ › Press a to run all tests.
+ › Press f to run only failed tests.
+ › Press q to quit watch mode.
+ › Press p to filter by a filename regex pattern.
+ › Press t to filter by a test name regex pattern.
+ › Press Enter to trigger a test run.
+````
