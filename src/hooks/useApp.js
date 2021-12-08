@@ -25,7 +25,7 @@ export const useApp = () => {
    * addInputValueの変更処理
    * @param {*} e
    */
-  const onChangeTodo = (e) => {
+  const onChangeAddInputValue = (e) => {
     setAddInputValue(e.target.value);
   };
 
@@ -92,7 +92,7 @@ export const useApp = () => {
       addInputValue,
     },
     {
-      onChangeTodo,
+      onChangeAddInputValue,
       handleAddTodo,
       handleDeleteTodo,
     },

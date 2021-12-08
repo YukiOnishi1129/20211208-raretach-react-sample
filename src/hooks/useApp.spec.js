@@ -10,7 +10,7 @@ import { useApp } from "./useApp";
 import { INIT_TODO_LIST } from "../data/initTodo";
 
 describe("【Hooksテスト】useApp test", () => {
-  describe("【関数テスト】onChangeTodo", () => {
+  describe("【関数テスト】onChangeAddInputValue", () => {
     test("【正常系】addInputValueを更新できること", () => {
       const expectValue = "テスト";
       // 引数
@@ -23,19 +23,27 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       expect(result.current[0].addInputValue).toBe("");
       // hooks関数の実行
-      act(() => result.current[1].onChangeTodo(eventObject));
+      act(() => result.current[1].onChangeAddInputValue(eventObject));
       expect(result.current[0].addInputValue).toBe(expectValue);
     });
   });
 
   describe("【関数テスト】handleAddTodo", () => {
+    // 予測値
     let expectTodoList = [];
+    // 引数
     let eventObject = {
       target: {
         value: "テスト",
       },
       key: "Enter",
     };
+
+    /**
+     * beforeEach
+     * test関数が実行される前に毎回実行される
+     * 今回の場合はテスト対象に渡す引数を毎回初期化する
+     */
     beforeEach(() => {
       // 引数の初期化
       eventObject = {
@@ -45,6 +53,7 @@ describe("【Hooksテスト】useApp test", () => {
         key: "Enter",
       };
     });
+
     test("【正常系】todoList, uniqueIdが更新されること、addInputValueがリセットされること", () => {
       // 予測値
       const expectTodoTitle = "Todo3";
@@ -59,7 +68,7 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       expect(result.current[0].addInputValue).toBe("");
       // hooks関数の実行(addInputValueを更新)
-      act(() => result.current[1].onChangeTodo(eventObject));
+      act(() => result.current[1].onChangeAddInputValue(eventObject));
       expect(result.current[0].addInputValue).toBe(expectTodoTitle);
 
       // hooks関数の実行: handleAddTodoの実行
@@ -83,7 +92,7 @@ describe("【Hooksテスト】useApp test", () => {
       const { result } = renderHook(() => useApp());
       expect(result.current[0].addInputValue).toBe("");
       // hooks関数の実行(addInputValueを更新)
-      act(() => result.current[1].onChangeTodo(eventObject));
+      act(() => result.current[1].onChangeAddInputValue(eventObject));
       expect(result.current[0].addInputValue).toBe(expectTodoTitle);
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
@@ -101,12 +110,12 @@ describe("【Hooksテスト】useApp test", () => {
       });
       // 引数
       eventObject.target.value = "";
-      eventObject.keyCode = 1;
+      eventObject.key = "";
       // hooks呼び出し
       const { result } = renderHook(() => useApp());
       expect(result.current[0].addInputValue).toBe("");
       // hooks関数の実行(addInputValueを更新)
-      act(() => result.current[1].onChangeTodo(eventObject));
+      act(() => result.current[1].onChangeAddInputValue(eventObject));
       expect(result.current[0].addInputValue).toBe("");
       // hooks関数の実行: handleAddTodoの実行
       act(() => result.current[1].handleAddTodo(eventObject));
@@ -116,10 +125,14 @@ describe("【Hooksテスト】useApp test", () => {
   });
 
   describe("【関数テスト】handleDeleteTodo", () => {
+    // 予測値
     let expectTodoList = [];
+
     beforeEach(() => {
+      // 予測値を初期化
       expectTodoList = [];
     });
+
     test("【正常系】todoが削除されること", () => {
       // 引数
       const targetId = 1;
@@ -147,7 +160,6 @@ describe("【Hooksテスト】useApp test", () => {
       window.confirm = jest.fn().mockReturnValueOnce(false);
       // 予測値
       expectTodoList = INIT_TODO_LIST;
-      // expectTodoList = INIT_TODO_LIST.filter((todo) => todo.id !== targetId);
       // hooks呼び出し
       const { result } = renderHook(() => useApp());
       act(() => result.current[1].handleDeleteTodo(targetId, targetTitle));

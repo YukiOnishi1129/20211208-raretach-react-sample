@@ -21,7 +21,7 @@ export const App = () => {
       <section className="common-area">
         <AddTodo
           addInputValue={state.addInputValue}
-          onChangeTodo={actions.onChangeTodo}
+          onChangeTodo={actions.onChangeAddInputValue}
           handleAddTodo={actions.handleAddTodo}
         />
       </section>
