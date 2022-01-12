@@ -7,7 +7,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 /* hooks */
 import { useApp } from "./useApp";
 /* data */
-import { INIT_TODO_LIST } from "../data/initTodo";
+import { INIT_TODO_LIST } from "../constants/data";
 
 describe("【Hooksテスト】useApp test", () => {
   describe("【関数テスト】onChangeAddInputValue", () => {
